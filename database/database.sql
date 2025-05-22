@@ -1,4 +1,4 @@
--- Active: 1732501947506@@127.0.0.1@3306@desafio_pic
+
 CREATE DATABASE desafio_pic;
 
 use desafio_pic;
