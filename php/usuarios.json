@@ -1,0 +1,14 @@
+[
+    {
+    "id":1,
+    "nome": "Arthur Reis Mendes",
+    "email": "arthurfriburgo234@gmail.com",
+    "saldo": 100.00
+    },
+    {
+    "id":2,
+    "nome": "julia",
+    "email": "julia@test.com",
+    "saldo": 500.00
+    }
+]
