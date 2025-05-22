@@ -1,5 +1,5 @@
 <?php 
-include_once 'php/sql/conexão.php'; // Corrija o nome do arquivo se for "conexao.php"
+include_once 'php/sql/conexão.php'; 
 
 session_start(); 
 // debug
@@ -13,13 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $cpf   = $_POST["cpf"] ?? '';
     $tipo  = $_POST["tipo"] ?? '';
     $senha = $_POST["senha"] ?? '';
-    $saldo = $_POST["saldo"] ?? '0.00'; // default para 0.00
+    $saldo = $_POST["saldo"] ?? '0.00'; 
 
     if (empty($nome) || empty($email) || empty($cpf) || empty($tipo) || empty($senha)) {
         die('Por favor, preencha todos os campos obrigatórios.');
     }
 
-    // Verifica se o e-mail ou cpf já existem
+  
     $sql_verifica = 'SELECT id FROM usuarios WHERE email = ? OR cpf = ?';
     $stmt_verifica = $conn->prepare($sql_verifica);
     $stmt_verifica->bind_param('ss', $email, $cpf);
@@ -32,13 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $stmt_verifica->close();
 
-    // Criptografa a senha
+    
     $senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 
-    // Insere novo usuário
+    
     $sql = 'INSERT INTO usuarios (nome, email, cpf, tipo, senha, saldo) VALUES (?, ?, ?, ?, ?, ?)';
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssd", $nome, $email, $cpf, $tipo, $senha_hash, $saldo); // saldo como double (d)
+    $stmt->bind_param("sssssd", $nome, $email, $cpf, $tipo, $senha_hash, $saldo); 
 
     if ($stmt->execute()) {
         header("Location: /pos_cad.php");
